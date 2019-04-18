@@ -1,0 +1,74 @@
+
+/run/initialize
+# P A R T I C L E   S O U R C E
+# beam #1 (Gaussian: lowE side)
+# default intensity is 1
+/gps/source/intensity 1
+/gps/particle mu+
+/gps/pos/type Volume
+/gps/pos/shape Ellipsoid
+/gps/pos/centre 0.0  0.0  -20.0 cm
+/gps/pos/halfx 6 mm
+/gps/pos/halfy 6 mm
+/gps/pos/halfz 3 mm
+
+/gps/ang/type beam2d
+/gps/ang/sigma_x 30. mrad
+/gps/ang/sigma_y 30. mrad
+/gps/direction 0.0  0.0  +1.0
+
+/gps/ene/type Gauss
+/gps/ene/mono 2.52858533 MeV
+/gps/ene/sigma 0.04 MeV
+/gps/ene/max 2.52858533 MeV
+
+# beam #2 (flat top)
+/gps/source/add .3992
+/gps/particle mu+
+/gps/pos/type Volume
+/gps/pos/shape Ellipsoid
+/gps/pos/centre 0.0  0.0  -20.0 cm
+/gps/pos/halfx 6 mm
+/gps/pos/halfy 6 mm
+/gps/pos/halfz 3 mm
+
+/gps/ang/type beam2d
+/gps/ang/sigma_x 30. mrad
+/gps/ang/sigma_y 30. mrad
+/gps/direction 0.0  0.0  +1.0
+
+/gps/ene/type Lin
+/gps/ene/gradient 0
+/gps/ene/intercept 1
+/gps/ene/min 2.52858533 MeV
+/gps/ene/max 2.54858533 MeV
+
+# beam #3 (Gaussian: highE side)
+/gps/source/add 1
+/gps/particle mu+
+/gps/pos/type Volume
+/gps/pos/shape Ellipsoid
+/gps/pos/centre 0.0  0.0  -20.0 cm
+/gps/pos/halfx 6 mm
+/gps/pos/halfy 6 mm
+/gps/pos/halfz 3 mm
+
+/gps/ang/type beam2d
+/gps/ang/sigma_x 30. mrad
+/gps/ang/sigma_y 30. mrad
+/gps/direction 0.0  0.0  +1.0
+
+/gps/ene/type Gauss
+/gps/ene/mono 2.54858533 MeV
+/gps/ene/sigma 0.04 MeV
+/gps/ene/min 2.54858533 MeV
+
+/control/verbose 1
+/process/verbose 1
+/tracking/verbose 1
+/material/verbose 0
+/run/verbose 1
+/event/verbose 1
+/vis/verbose 0
+
+/run/beamOn 10000
