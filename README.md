@@ -1,5 +1,5 @@
 
-##1S2SMuSim
+# 1S2SMuSim
 
 This program is for Muonium 1S2S Spectroscopy Experiment proposed at J-PARC MUSE D2
 
@@ -14,7 +14,7 @@ It could be builded and run on KEKCC. Parts of it could be run offline.
 
 More details should be added in the future.
 
-##PREREQUISITE
+## PREREQUISITE
 
 - ROOT 61406
 - PYTHON 2.7
