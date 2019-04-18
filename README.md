@@ -1,4 +1,19 @@
 
+##1S2SMuSim
+
+This program is for Muonium 1S2S Spectroscopy Experiment proposed at J-PARC MUSE D2
+
+The entire program is consist of four parts:
+
+- Dline (D2) simulation
+- Stopping simulation at aerogel target
+- Diffusion model and cw & pulsed Laser ionization
+- Thermal muon transmission
+
+It could be builded and run on KEKCC. Parts of it could be run offline.
+
+More details should be added in the future.
+
 ##PREREQUISITE
 
 - ROOT 61406
