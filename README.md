@@ -22,7 +22,7 @@ More details should be added in the future.
 - Geant4 10.3.3
 - CLHEP 2.1.1.0
 - odeint-v2 library
-- G4Beamline-3.02
+- G4Beamline-3.02 (http://www.muonsinternal.com/muons3/G4beamline#Download)
 
 In order to run G4Beamline and make musr, extras needed:
 
