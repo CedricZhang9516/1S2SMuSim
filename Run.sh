@@ -14,25 +14,22 @@ mv mlf_d2_190406_dqdscale_0.95_ns_$2.root ${WorkDir}/OutputRoot/SimBeamLine_$2.r
 fi
 
 #### SimBeamStop
-#if [ $1 -eq 2 ]; then
 if [[ $1 =~ 2 ]]; then
 cd ${WorkDir}/SimBeamStop/
 ${WorkDir}/SimBeamStop/build/Application_Main 19 run0221.mac
-mv ${WorkDir}/SimBeamStop/SimBeamStop.root ${WorkDir}/SimDiffusionLaser/Root/
-cp ${WorkDir}/SimDiffusionLaser/Root/SimBeamStop.root ${WorkDir}/OutputRoot/SimBeamStop.root
+mv ${WorkDir}/SimBeamStop/SimBeamStop.root ${WorkDir}/OutputRoot/SimBeamStop.root
+#mv ${WorkDir}/SimBeamStop/SimBeamStop.root ${WorkDir}/SimDiffusionLaser/Root/SimBeamStop.root
 fi
 
 #### SimDiffusionLaser (with ROOT 641)
-#if [ $1 -eq 3 ]; then
 if [[ $1 =~ 3 ]]; then
 cd ${WorkDir}/SimDiffusionLaser/
 ${WorkDir}/SimDiffusionLaser/SimLaser $2 $3
-#mv ${WorkDir}/SimDiffusionLaser/Root/FromDline_musr.dat ${WorkDir}/SimThermalMuonTran/run/FromDline_musr.dat
 mv ${WorkDir}/SimDiffusionLaser/Root/${2} ${WorkDir}/OutputRoot/SimDiffusionLaser_${2}
+#mv ${WorkDir}/SimDiffusionLaser/Root/FromDline_musr.dat ${WorkDir}/SimThermalMuonTran/run/FromDline_musr.dat
 fi
 
 #### SimThermalMuonTransmission (with ROOT 534)
-#if [ $1 -eq 4 ]; then
 if [[ $1 =~ 4 ]]; then
 cd ${WorkDir}/SimThermalMuonTran/run/
 ../bin/Linux-g++/musrSim musr_simple.mac
