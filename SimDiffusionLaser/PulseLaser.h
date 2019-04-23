@@ -7,7 +7,7 @@
 #include <fstream>
 #include <cmath>
 
-
+//assume TEM00 Gaussian beam, Gaussian time profile
 
 class PulseLaser
 {
@@ -27,24 +27,28 @@ class PulseLaser
   double GetIntensity( double x, double y, double z, double t ); // [W/mm^2] = [MW/m^2]
   double GetIntensity( std::array<double,3> pos, double t ) { return GetIntensity( pos[0], pos[1], pos[2], t); };
 
+  double GetLinewidth( void ){ return 2*M_PI * fLinewidth; };
 
   double GetRayleighLength( void ) { return M_PI * pow(fWaist0,2) / fWavelength; };
   double GetWaist( double x );
 
-  static double FWHM2Sigma( double fwhm ){ return fwhm / (2.*sqrt(2*log(2))); };
-  static double Sigma2FWHM( double sigma ){ return sigma * (2.*sqrt(2*log(2))); };
+  // 2.*sqrt(2*log(2)) ~= 2.354820045031
+  static double FWHM2Sigma( double fwhm ){ return fwhm / 2.354820045031; };
+  static double Sigma2FWHM( double sigma ){ return sigma * 2.354820045031; };
 
   void DumpSetting( void );
 
  private:
-  static constexpr double fWavelength = 355E-6; // [mm]
+  //static constexpr double fWavelength = 355E-6; // [mm] (used in cw simulation)
+  static constexpr double fWavelength = 244.1775E-6; // [mm]
+  static constexpr double fLinewidth = 5.0e9; // [Hz], // preliminary value
   static constexpr double C = 299792458E3; // light velocity [mm/s]
   std::array<double,3> fCenterPos; // (x,y,z) [mm]
   double fT0; // [s] Pulse exist at (fCenterX, fCenterY, fCenterZ)
   double fWaist0; // 1/e^2 radius [mm]
   double fDuration; // FWHM time duration [s]
   double fTSigma; // time duration in sigma [s] 
-  double fEnergy; // J
+  double fEnergy; // [J]
 
 
 };
@@ -75,7 +79,7 @@ std::array<double,3> PulseLaser::GetCenterPosition( double &x, double &y, double
 
 double PulseLaser::GetWaist( double x ){
   // Yariv (2.5-14)
-  return fWaist0 * sqrt( 1 + pow( (x-fCenterPos[0])/GetRayleighLength(), 2) );
+  return fWaist0 * std::hypot( 1, (x-fCenterPos[0])/GetRayleighLength() );
 }
 
 
@@ -84,10 +88,10 @@ double PulseLaser::GetIntensity( double x, double y, double z, double t )
   double powerX = GetPeakPower() * exp( - pow( (t-GetPeakTime(x))/fTSigma, 2)/2 );
 
   // Demtroder, Laser spectroscopy Vol. 1 (5.147)
-  double r = sqrt( pow(y-fCenterPos[1],2) + pow(z-fCenterPos[2],2) );
+  double r = std::hypot( y-fCenterPos[1], z-fCenterPos[2] );
   double w = GetWaist( x );
 
-  return 2*powerX / M_PI / pow(w,2) * exp( -2*pow(r/w,2) );
+  return 2*powerX / (M_PI * pow(w,2)) * exp( -2*pow(r/w,2) );
 }
 
 
@@ -101,6 +105,7 @@ void PulseLaser::DumpSetting( void )
   std::cout << "RayleighLength : " << GetRayleighLength() << " mm (M^2==1)" << std::endl;
   std::cout << "Peak power : " << GetPeakPower() << " W" << std::endl;
   std::cout << "Peak intensity at the waist : " << GetIntensity( fCenterPos, fT0 ) << " W/mm^2" << std::endl;
+  std::cout << "Laser linewidth : " << fLinewidth << " Hz" << std::endl;
 }
 
 #endif //__PULSELASER_HH__

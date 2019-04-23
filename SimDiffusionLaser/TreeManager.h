@@ -11,7 +11,9 @@
 #include "CWLaser.h"
 #include "PulseLaser.h"
 
-typedef std::array< double , 5 > state_type;
+static constexpr int fNstates = Muonium::GetnRhoparams(); //number of density matrix (and ionization rate) parameters
+//typedef std::array< double , 5 > state_type;
+typedef std::array< double , fNstates > state_type;
 
 using namespace std;
 
@@ -25,13 +27,13 @@ class TreeManager
   void Initialize( Muonium* mu );
   void Fill() { fTree->Fill();};
   void Write() { fFile->Write();  };
-  double* GetRho(){
-    static double r[5]; 
-    r[0] = fFinalRho[0];
-    r[1] = fFinalRho[1];
-    r[2] = fFinalRho[2];
-    r[3] = fFinalRho[3];
-    r[4] = fFinalRho[4];
+  double* GetRho(int N_){
+    const int N = N_;
+    static double r[N];
+    if(N >= fNstates) return r;
+    for(int i = 0; i < fNstates; i++){
+      r[N] = fFinalRho[N];
+    }
     return r;
   };
 
@@ -67,7 +69,7 @@ class TreeManager
   double (*fPos)[3];     // (x , y, z) array
   double fVelocity[3]; // (vx, vy, vz)
   double* fTime;     // (t) array
-  double (*fRho)[5];     // (rho_gg, Re(rho_ge), Im(rho_ge), rho_ee, rho_ion) array
+  double (*fRho)[fNstates];     // (rho_gg, Re(rho_ge), Im(rho_ge), rho_ee, rho_ion) array
   double (*fIntensity)[2];// Intensity array (244, 355)
 
   double fSurfacePos[3];
@@ -78,7 +80,7 @@ class TreeManager
   double fFinalPos[3];
   double fFinalVelocity[3];
   double fFinalAbsVelocity;
-  double fFinalRho[5];
+  double fFinalRho[fNstates];
 
 };
 
@@ -125,14 +127,14 @@ fCW(cw), fPulse(pulse), fDetailSaveFlag(saveFlag), fNPoints( nPoints ), fTPitch(
   fTree = new TTree( "MuTree", "MuTree" );
   fPos = new double[fNPoints][3]();
   fTime = new double[fNPoints]();
-  fRho = new double[fNPoints][5]();
+  fRho = new double[fNPoints][fNstates]();
   fIntensity = new double[fNPoints][2]();
   fTree->Branch( "Temperature", &fTemperature, "Temperature/D" );
   if( fDetailSaveFlag ){
     fTree->Branch( "Position", fPos, Form( "Pos[%d][3]/D", fNPoints ) );
     fTree->Branch( "Velocity", fVelocity, "Velocity[3]/D" );
     fTree->Branch( "Time", fTime, Form( "Time[%d]/D", fNPoints) );
-    fTree->Branch( "Rho", fRho, Form( "Rho[%d][5]/D", fNPoints) );
+    fTree->Branch( "Rho", fRho, Form( "Rho[%d][%d]/D", fNPoints, fNstates) );
     fTree->Branch( "Intensity", fIntensity, Form( "Intensity[%d][2]/D", fNPoints ) );
   }
   fTree->Branch( "SurfacePosition", fSurfacePos, "SurfacePos[3]/D" );
@@ -144,7 +146,7 @@ fCW(cw), fPulse(pulse), fDetailSaveFlag(saveFlag), fNPoints( nPoints ), fTPitch(
   fTree->Branch( "FinalTime", &fFinalTime, "FinalTime/D" );
   fTree->Branch( "FinalVelocity", fFinalVelocity, "FinalVelocity[3]/D" );
   fTree->Branch( "FinalAbsVelocity", &fFinalAbsVelocity, "FinalAbsVelocity/D" );
-  fTree->Branch( "FinalRho", fFinalRho, "FinalRho[5]/D" );
+  fTree->Branch( "FinalRho", fFinalRho, Form("FinalRho[%d]/D", fNstates) );
 
   fMu = 0;
 }
@@ -185,7 +187,7 @@ void TreeManager::operator()( const state_type &x, const double t )
     fIntensity[fPIndex][0] = fCW->GetIntensity( fPos[fPIndex][0], fPos[fPIndex][1], fPos[fPIndex][2] );
     fIntensity[fPIndex][1] = fPulse->GetIntensity( fPos[fPIndex][0], fPos[fPIndex][1], fPos[fPIndex][2], t );
     
-    for( int i=0; i<5; i++ ){
+    for( int i=0; i<fNstates; i++ ){
       fRho[fPIndex][i] = x[i];
     }
   }
@@ -200,7 +202,7 @@ void TreeManager::operator()( const state_type &x, const double t )
       fMu->GetVelocity( t, fFinalVelocity[0], fFinalVelocity[1], fFinalVelocity[2] );
     }
     fFinalAbsVelocity = fMu->GetAbsVelocity( t );
-    for( int i=0; i<5; i++ ){
+    for( int i=0; i<fNstates; i++ ){
       fFinalRho[i] = x[i];
     }
   }

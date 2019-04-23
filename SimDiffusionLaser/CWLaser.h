@@ -43,7 +43,7 @@ class CWLaser
   static constexpr double fWavelength = 244.17749E-6; // [mm] (PRA187, 1994, p.247)
   std::array<double,3> fCenterPos; // (x,y,z) [mm]
   double fWaist0; // 1/e^2 radius [mm] (D2sigma)
-  double fPower; // W (one direction)
+  double fPower; // [W] (one direction)
   double fONTime; // [s]
   double fOFFTime; // [s]
 
@@ -89,7 +89,7 @@ std::array<double,3> CWLaser::GetCenterPosition( double &x, double &y, double &z
 
 double CWLaser::GetWaist( double x ){
   // Yariv (2.5-14)
-  return fWaist0 * sqrt( 1 + pow( (x-fCenterPos[0])/GetRayleighLength(), 2) );
+  return fWaist0 * std::hypot( 1., (x-fCenterPos[0])/GetRayleighLength() );
 }
 
 
@@ -97,7 +97,7 @@ double CWLaser::GetIntensity( double x, double y, double z )
 {
   // ON/OFF is not considered.
   // Demtroder, Laser spectroscopy Vol. 1 (5.147)
-  double r = sqrt( pow(y-fCenterPos[1],2) + pow(z-fCenterPos[2],2) );
+  double r = std::hypot( y-fCenterPos[1], z-fCenterPos[2] ) ;
   double w = GetWaist( x );
   return 2*fPower / M_PI / pow(w,2) * exp( -2*pow(r/w,2) ); 
 }
