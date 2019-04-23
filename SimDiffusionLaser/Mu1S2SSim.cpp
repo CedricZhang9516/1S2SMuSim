@@ -1,8 +1,8 @@
-#include <boost/serialization/array_wrapper.hpp> //necessary depending on environment
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <boost/numeric/odeint.hpp>
+#include <boost/serialization/array.hpp>
 #include "CWLaser.h"
 #include "PulseLaser.h"
 #include "Muonium.h"
@@ -15,6 +15,7 @@
 #include "TTree.h"
 #include "TFile.h"
 #include "TMath.h"
+
 
 
 using namespace boost::numeric::odeint;
@@ -148,7 +149,8 @@ int main(int argc, char **argv)
   double x_dec, y_dec, z_dec, t_dec;
   int Nentries;
   //TFile *Fdlinefile = new TFile("/Users/zhangce/WorkArea/LaserMuYield/Root/SimBeamStop_0406_365_tot7.1e8.root");
-  TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_0406_DG275_SUS_tot.root");
+  //TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_0406_DG275_SUS.root");
+  TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop.root");
   TTree * Tdlinefile = (TTree*) Fdlinefile->Get("position");
   Tdlinefile->SetBranchAddress("x", &x_dec);
   Tdlinefile->SetBranchAddress("y", &y_dec);
@@ -269,6 +271,10 @@ int main(int argc, char **argv)
   }
 
   tManager.Write();
+
+  //CvtMusr* t = new CvtMusr();
+  //t->Loop();
+  //delete t;
 
 
 }

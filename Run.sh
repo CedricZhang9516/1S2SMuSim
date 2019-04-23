@@ -1,24 +1,31 @@
 #! /bin/sh
 
-# with ROOT 534
-cd /home/had/zhangce/1S2SMuSim/SimBeamLine
-g4bl mlf_d2_190406_dqdscale_0.95_ns_70.in
+WorkDir=$PWD
+Lib_boost=/home/had/zhangce/lib_boost/include
 
-# with ROOT 614
-/home/had/zhangce/1S2SMuSim/SimBeamStop/build/Application_Main 19 run0221.mac
+#### SimG4BeamLine (with ROOT 534)
+#source ~/.bashrc534
+#cd ${WorkDir}/SimBeamLine/
+#g4bl mlf_d2_190406_dqdscale_0.95_ns_70.in
 
-mv /home/had/zhangce/1S2SMuSim/SimBeamStop/SimBeamStop.root /home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/
+#### SimBeamStop
+cd ${WorkDir}/SimBeamStop/
+${WorkDir}/SimBeamStop/build/Application_Main 19 run0221.mac
 
-/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/SimLaser output_0.root 0
-/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/GenerateTXT/GenerateTXT.sh
+mv ${WorkDir}/SimBeamStop/SimBeamStop.root ${WorkDir}/SimDiffusionLaser/Root/
 
-mv /home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/FromDline_musr.txt /home/had/zhangce/1S2SMuSim/SimThermalMuonTran/run
+#### SimDiffusionLaser (with ROOT 641)
+cd ${WorkDir}/SimDiffusionLaser/
+${WorkDir}/SimDiffusionLaser/SimLaser output_0.root 0
+#mv ${WorkDir}/SimDiffusionLaser/Root/FromDline_musr.dat ${WorkDir}/SimThermalMuonTran/run/FromDline_musr.dat
 
-# with ROOT 534 (once finish build however, dont need ROOT534 anymore)
-cd /home/had/zhangce/1S2SMuSim/SimThermalMuonTran/run
-../bin/Linux-g++/musrSim test190326_simple.mac
+#### SimThermalMuonTransmission (with ROOT 534)
+cd ${WorkDir}/SimThermalMuonTran/run/
+../bin/Linux-g++/musrSim musr_simple.mac
 
 
-mv /home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop.root /home/had/zhangce/1S2SMuSim/Root
-mv /home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/output_0.root /home/had/zhangce/1S2SMuSim/Root
-mv /home/had/zhangce/1S2SMuSim/SimThermalMuonTran/run/musr_0.root /home/had/zhangce/1S2SMuSim/Root
+mv ${WorkDir}/SimDiffusionLaser/Root/SimBeamStop.root ${WorkDir}/OutputRoot/SimBeamStop.root
+mv ${WorkDir}/SimDiffusionLaser/Root/output_0.root ${WorkDir}/OutputRoot/SimDiffusionLaser.root
+mv ${WorkDir}/SimThermalMuonTran/run/data/musr_0.root ${WorkDir}/OutputRoot/SimThermalMuonTran.root
+
+cd ${WorkDir}

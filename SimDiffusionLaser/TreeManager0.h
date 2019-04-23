@@ -13,7 +13,7 @@
 #include "CWLaser.h"
 #include "PulseLaser.h"
 
-typedef std::array< double , 5 > state_type;
+//typedef std::array< double , 5 > state_type;
 
 using namespace std;
 

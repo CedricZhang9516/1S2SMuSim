@@ -1,4 +1,4 @@
-#include "/Users/zhangce/WorkArea/CZhang/CZhang.cxx"
+//#include "/Users/zhangce/WorkArea/CZhang/CZhang.cxx"
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
 // Thu Aug 23 14:21:25 2018 by ROOT version 5.34/36
@@ -30,9 +30,9 @@ const string filename = //"Otanisan0823_tree_Type1_D87000_T322_Nrepeat1000000_Xf
 //"0313_78_DG500_dqd0.95_tlaser_2.5_tot_tree_B0.119_Type3_D87000_T322_Nrepeat505785_Xfree1_Thick8.80_NewGeo0_.root";
 //"0317_78_DG500_dqd0.95_tlaser_2.5_tot__tree_B0.119_Type3_D87000_T322_Nrepeat3270612_Xfree1_Thick8.80_NewGeo0_.root";
 //"0317_tlaser.root";
-"0324_tlaser_1.2.root";
+"/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/Target_output_0.root";
 
-const string output = "FromDline_78_DG365_0324_dqd_0.95_tlaser1.2_7e8.dat";
+const string output = "/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/FromDline_musr.dat";
 
 double PI = 3.1415926;
 

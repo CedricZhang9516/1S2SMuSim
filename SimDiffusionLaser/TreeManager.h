@@ -26,7 +26,8 @@ class TreeManager
   void operator()( const state_type &x, const double t );
   void Initialize( Muonium* mu );
   void Fill() { fTree->Fill();};
-  void Write() { fFile->Write();  };
+  void Write() { fFile->Write(); fFile->Close();  };
+  /*
   double* GetRho(int N_){
     const int N = N_;
     static double r[N];
@@ -36,6 +37,7 @@ class TreeManager
     }
     return r;
   };
+  */
 
  private:
   Muonium* fMu;
