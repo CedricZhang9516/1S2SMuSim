@@ -25,6 +25,8 @@ P00PrimaryGenerator::P00PrimaryGenerator()
 	
 	particleGun  = new G4ParticleGun(n_particle);
 
+	fpParticleGun = new G4GeneralParticleSource();
+	
 	G4ParticleDefinition* particle
 	       = G4ParticleTable::GetParticleTable()->FindParticle("mu+");
 	particleGun->SetParticleDefinition(particle);
@@ -37,7 +39,7 @@ P00PrimaryGenerator::P00PrimaryGenerator()
 	*/
 	action1 = new PrimaryGeneratorAction1(particleGun);
 	// not to be used, will be replaced by the particleGun
-	fpParticleGun = new G4GeneralParticleSource();
+	
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........
@@ -52,6 +54,7 @@ P00PrimaryGenerator::~P00PrimaryGenerator()
 void P00PrimaryGenerator::GeneratePrimaries(G4Event* anEvent)
 {
 	action1->GeneratePrimaries(anEvent);
+  // only here need to be changed into MC mode
   //fpParticleGun->GeneratePrimaryVertex(anEvent);
 }
 

@@ -76,6 +76,26 @@
 /musr/command construct tubs SOAp2   70    74    98 0 360 Steel           0 0   71   log_MCHvac norot dead 112   
 /musr/command construct tubs SOAp3   38    87     1 0 360 Steel           0 0  180   log_MCHvac norot dead 113
 
+/musr/command construct tubs  saveSOA00 0   38    0.1 0 360 G4_Galactic    0     0    -73   log_MCHvac  norot  musr/ScintSD 701
+/musr/command construct tubs  saveSOA01 0   38    0.1 0 360 G4_Galactic    0     0    -70   log_MCHvac  norot  musr/ScintSD 702
+/musr/command construct tubs  saveSOA02 0   38    0.1 0 360 G4_Galactic    0     0    -67   log_MCHvac  norot  musr/ScintSD 703
+/musr/command construct tubs  saveSOA03 0   38    0.1 0 360 G4_Galactic    0     0    -47   log_MCHvac  norot  musr/ScintSD 704
+/musr/command construct tubs  saveSOA04 0   38    0.1 0 360 G4_Galactic    0     0    -50   log_MCHvac  norot  musr/ScintSD 705
+
+/musr/command construct tubs  saveSOA10 0   38    0.1 0 360 G4_Galactic    0     0    -45   log_MCHvac  norot  musr/ScintSD 711
+/musr/command construct tubs  saveSOA11 0   38    0.1 0 360 G4_Galactic    0     0    -40   log_MCHvac  norot  musr/ScintSD 712
+/musr/command construct tubs  saveSOA12 0   38    0.1 0 360 G4_Galactic    0     0    -30   log_MCHvac  norot  musr/ScintSD 713
+/musr/command construct tubs  saveSOA13 0   38    0.1 0 360 G4_Galactic    0     0    -25   log_MCHvac  norot  musr/ScintSD 714
+
+
+
+/musr/command construct tubs  saveSOA05 0   70    0.1 0 360 G4_Galactic   0     0    -20   log_MCHvac  norot  musr/ScintSD 706
+/musr/command construct tubs  saveSOA06 0   70    0.1 0 360 G4_Galactic   0     0    0   log_MCHvac  norot  musr/ScintSD 707
+/musr/command construct tubs  saveSOA07 0   70    0.1 0 360 G4_Galactic   0     0    20   log_MCHvac  norot  musr/ScintSD 708
+/musr/command construct tubs  saveSOA08 0   70    0.1 0 360 G4_Galactic   0     0    40   log_MCHvac  norot  musr/ScintSD 709
+/musr/command construct tubs  saveSOA09 0   70    0.1 0 360 G4_Galactic   0     0    60   log_MCHvac  norot  musr/ScintSD 710
+
+
 /musr/command construct tubs  saveSOA1 0   38    0.1 0 360 G4_Galactic   0     0   -57   log_MCHvac norot  musr/ScintSD 901
 /musr/command construct tubs  saveSOA2 0   74    0.1 0 360 G4_Galactic   0     0    71   log_MCHvac norot  musr/ScintSD 902
 /musr/command construct tubs  saveSOA3 0   87    0.1 0 360 G4_Galactic   0     0   180   log_MCHvac norot  musr/ScintSD 903
@@ -274,8 +294,8 @@
 #/musr/command globalfield Q2_field   780 0   16      fromfile 3DE Q1_3D_map.map   log_Q2vac    0.56
 /musr/command globalfield Q2_field   780 0   16      fromfile 3DE Q1_3D_map.map   log_Q2vac    2.0
 
-#/musr/command globalfield Q3_field   240 0   636.0   fromfile 3DE Q1_3D_map.map   log_Q3vac    -1.088
-/musr/command globalfield Q3_field   240 0   636.0   fromfile 3DE Q1_3D_map.map   log_Q3vac    -1.588
+/musr/command globalfield Q3_field   240 0   636.0   fromfile 3DE Q1_3D_map.map   log_Q3vac    -1.088
+#/musr/command globalfield Q3_field   240 0   636.0   fromfile 3DE Q1_3D_map.map   log_Q3vac    -1.588
 
 
 /musr/command globalfield Q4_field    80 0   636.0   fromfile 3DE Q1_3D_map.map   log_Q4vac    1.056

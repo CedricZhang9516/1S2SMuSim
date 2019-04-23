@@ -1,11 +1,15 @@
 #! /bin/sh
 
+# with ROOT 534
+cd /home/had/zhangce/1S2SMuSim/SimBeamLine
+g4bl mlf_d2_190406_dqdscale_0.95_ns_70.in
+
 # with ROOT 614
 /home/had/zhangce/1S2SMuSim/SimBeamStop/build/Application_Main 19 run0221.mac
 
 mv /home/had/zhangce/1S2SMuSim/SimBeamStop/SimBeamStop.root /home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/
 
-/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Mu1S2SSim output_0.root 0
+/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/SimLaser output_0.root 0
 /home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/GenerateTXT/GenerateTXT.sh
 
 mv /home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/FromDline_musr.txt /home/had/zhangce/1S2SMuSim/SimThermalMuonTran/run

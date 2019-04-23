@@ -3,12 +3,43 @@
 # beam #1 (Gaussian: lowE side)
 # default intensity is 1
 
+# P A R T I C L E   S O U R C E
+# beam #1 (Gaussian: lowE side)
+# default intensity is 1
 
-/control/verbose 1 
+/gps/source/intensity 1
+/gps/particle mu+
+
+/gps/pos/type Volume
+/gps/pos/shape Ellipsoid
+/gps/pos/centre 0.0  0.0  -20.0 cm
+
+/gps/pos/halfx 6 mm
+/gps/pos/halfy 6 mm
+/gps/pos/halfz 3 mm
+
+/gps/ang/type beam2d
+/gps/ang/sigma_x 30. mrad
+/gps/ang/sigma_y 30. mrad
+/gps/direction 0.0  0.0  +1.0
+
+/gps/ene/type Gauss
+#/gps/ene/mono 2.52858533 MeV
+#/gps/ene/sigma 0.04 MeV
+#/gps/ene/max 2.52858533 MeV
+/gps/ene/mono 2.7955 MeV
+/gps/ene/sigma 0.4294 MeV
+#/gps/ene/max 2.52858533 MeV
+
+
+
+
+
+/control/verbose 0
 /process/verbose 0
 /tracking/verbose 0
 /material/verbose 0
-/run/verbose 1
+/run/verbose 0
 /event/verbose 0
 
 #/run/beamOn 19675
@@ -16,8 +47,10 @@
 #/run/beamOn 99224
 #/run/beamOn 1094702
 #/run/beamOn 7063080 
-#/run/beamOn 10023120
-/run/beamOn 10000
+
+/run/beamOn 10023120
+#/run/beamOn 100000
+
 #/run/beamOn 99174
 #/run/beamOn 9000
 

@@ -686,13 +686,15 @@ Geometry::GeomDG2( const G4int& id )
   //const G4double& ylen = 18*mm;
   const G4double& ylen = 80*mm;
   //const G4double& ylen = 300*mm;
-  const G4double& zlen = 0.05*mm;
+  
+  //const G4double& zlen = 0.05*mm;
+  const G4double& zlen = 0.1*mm;
   //const G4double& zpos = -153*mm;
   const G4double& zpos = -153*mm;
   //G4Material* material = fMateScint;
   
-  G4Material* material = StainlessSteel;
-  //G4Material* material = fMateKapton;
+  //G4Material* material = StainlessSteel;
+  G4Material* material = fMateKapton;
   //G4Material* material = fMateAl;
   
   //G4Material* material = fMateDefault;
@@ -714,19 +716,22 @@ Geometry::GeomDG( const G4int& id )
   //const G4double xlen= 43.0*mm;
   //const G4double xlen= 300.0*mm;
   const G4double xlen= 78.0*mm;
+  //const G4double xlen= 200.0*mm;
   
   //const G4double ylen= 50.0*mm;
   
   //const G4double ylen= 35.0*mm;
   //const G4double ylen= 300.0*mm;
   const G4double ylen= 78.0*mm;
+  //const G4double ylen= 200.0*mm;
   
   //const G4double& xlen = 18*mm;
   //const G4double& ylen = 18*mm;
   //const G4double& zlen = 150e-3*mm;
   //const G4double& zlen = 500e-3*mm;
   //const G4double& zlen = 475e-3*mm;
-  const G4double& zlen = 275e-3*mm;
+  //const G4double& zlen = 275e-3*mm;
+  const G4double& zlen = 350e-3*mm;
   //const G4double& zlen = 500e-3*mm;
   //const G4double& zlen = 525e-3*mm;
   //const G4double& zlen = 550e-3*mm;
@@ -829,12 +834,15 @@ Geometry::GeomTgt( const G4int& id )
   //G4double xlen= 43.0*mm;
   //G4double xlen= 300.0*mm;
   G4double xlen= 78.0*mm;
+  //G4double xlen= 200.0*mm;
   
   //G4double ylen= 50.0*mm;
   
   //G4double ylen= 35.0*mm;
   //G4double ylen= 300.0*mm;
   G4double ylen= 78.0*mm;
+  //G4double ylen= 200.0*mm;
+
   if( fTgtNum == 0 ){ // Silica plate
     xlen = 30.0*mm; // xlen: +-0.1 mm tolerance.
     ylen = 42.0*mm; // ylen: +-0.1 mm tolerance.

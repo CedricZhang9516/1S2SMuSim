@@ -61,7 +61,7 @@ class PrimaryGeneratorAction1
     fstream outFile;
     double n = 0;
 
-    const static int N = 10000;//10023120;//10000;//10023120;//7063080;//9000;//7063080;//9000;//99174;//7063080; //1094702;//99224;//9856;//19675;//lines in the file
+    const static int N = 10023120;//100000;//10023120;//10000;//10023120;//7063080;//9000;//7063080;//9000;//99174;//7063080; //1094702;//99224;//9856;//19675;//lines in the file
 
     double rX,rY,rZ,rPx,rPy,rPz,rEk,rT;
       std::vector<G4double>  X;

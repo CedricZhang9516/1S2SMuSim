@@ -30,4 +30,14 @@ In order to run G4Beamline and make musr, extras needed:
 - Geant4 4.9.5
 - (vis) view3dscene or wrl
 
+## To Build the entire simulation packages
+### 1.SimBeamLine, the G4Beamline-3.02 is needed. 
+
+### 1.SimBeamLine:
+
+- qdq_scale = 0.95
+- Momentum = 28.4 MeV/c
+
+- .in
+- ROOT file:
 
