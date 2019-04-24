@@ -148,9 +148,8 @@ int main(int argc, char **argv)
 
   double x_dec, y_dec, z_dec, t_dec;
   int Nentries;
-  //TFile *Fdlinefile = new TFile("/Users/zhangce/WorkArea/LaserMuYield/Root/SimBeamStop_0406_365_tot7.1e8.root");
-  //TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_0406_DG275_SUS.root");
-  TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop.root");
+  
+  TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_0417_Kapton_DG350_tot.root");
   TTree * Tdlinefile = (TTree*) Fdlinefile->Get("position");
   Tdlinefile->SetBranchAddress("x", &x_dec);
   Tdlinefile->SetBranchAddress("y", &y_dec);
@@ -160,7 +159,6 @@ int main(int argc, char **argv)
 
   TreeManager0 tManager0( argv[1] );
 	
-  Nentries = 1000;
 
   for( int entry=0; entry<Nentries; entry++ ){
     if( entry % (Nentries/1000) == 0 ){

@@ -9,7 +9,11 @@ Lib_boost=/home/had/zhangce/lib_boost/include
 if [[ $1 =~ 1 ]]; then
 source ~/.bashrc534
 cd ${WorkDir}/SimBeamLine/
-g4bl mlf_d2_190406_dqdscale_0.95_ns_70.in
+if [ -z $2 ];then
+g4bl mlf_d2_190406_dqdscale_0.95_ns_0.in
+mv mlf_d2_190406_dqdscale_0.95_ns_0.root ${WorkDir}/OutputRoot/SimBeamLine_0.root
+else
+g4bl mlf_d2_190406_dqdscale_0.95_ns_$2.in
 mv mlf_d2_190406_dqdscale_0.95_ns_$2.root ${WorkDir}/OutputRoot/SimBeamLine_$2.root
 fi
 
