@@ -106,7 +106,7 @@ g4bl mlf_d2_190406_dqdscale_0.95_ns_70.in
 
 Currently, Genat4.9 and ROOR 5.34 should be used in this part.
 
-### 2.SimBeamLine
+### 2.SimBeamStop
 
 This simulation starts from the end of D-line (entrance of D2 area) to the aerogel target, the detials of the target holder and the Mu chamber would be attached in the reference. The number of events read by the program are in the run0221.mac
 
@@ -126,7 +126,7 @@ Then run the simulation by
 
 Here 19 is the label of aerogel sample, the number of events can be set in the run0221.mac. Also one can refer to ./src/Geometry.cc, ./include/P00SteppingAction.hh, ./include/PrimaryGeneratorAction1.hh for more details.
 
-### 3.SimBeamStop
+### 3.SimDiffusionLaser
 
 This simulation includes the diffusion model and the laser simulation (CW laser and Pulsed laser, credit to Okayama Univ.). The Muonium inside the aerogel target will diffuse and possibly emitted out to be ionized by the laser.
 
