@@ -72,7 +72,7 @@ Run.sh provides an easy way to run the simulaiton. using
 ./Run.sh $n
 ```
 
-one can run each simulation, here $n corresponds to each simulaiton.
+one can run each simulation separately, here $n (1 - 4) corresponds to each simulaiton in order.
 
 For example, to run the Diffusion model with the laser, in the ./1S2SMuSim, type
 
