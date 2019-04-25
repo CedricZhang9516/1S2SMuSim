@@ -145,11 +145,12 @@ int main(int argc, char **argv)
 {
   
 
-
+/*
   double x_dec, y_dec, z_dec, t_dec;
   int Nentries;
   
-  TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_0417_Kapton_DG350_tot.root");
+  //TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_0417_Kapton_DG350_tot.root");
+  //TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/masuda_san_1224_tree_Type3_D87000_T322_Nrepeat3231566_Xfree0_Thick7.12_NewGeo0_.root");
   TTree * Tdlinefile = (TTree*) Fdlinefile->Get("position");
   Tdlinefile->SetBranchAddress("x", &x_dec);
   Tdlinefile->SetBranchAddress("y", &y_dec);
@@ -165,7 +166,12 @@ int main(int argc, char **argv)
       std::cout << entry << "/" << Nentries << "\r" << std::flush;
     }
     Tdlinefile->GetEntry(entry);
-    //t_dec from the stopping simulation glbt_gen, the mean in the exaple root file is about 0.35 us.
+    
+    
+    
+    //if(x_dec*x_dec+y_dec*y_dec > 39*39)continue;
+    
+    //t_dec from the stopping simulation glbt_gen, the mean in the exaple root file is about 0.35 us. Be careful this could be changed
     mu0 = new Muonium0( x_dec, y_dec, z_dec, (t_dec-350)*1e-9 );
     mu0->Diffusion();
     //mu0->Emission();
@@ -174,24 +180,20 @@ int main(int argc, char **argv)
   }
 
   tManager0.Write();
-//  tManager0.Close();
-  
-  //delete mu0;
   cout<<"filename Target_"<<argv[1]<<" closed."<<endl;
+*/
 
-
-  /*
-    ./DecayEffect filename detune[Hz] (./DecayEffect +1kHz.root 1000)
-   */
+  
+  //  ./DecayEffect filename detune[Hz] (./DecayEffect +1kHz.root 1000)
 
   //TFile* itf = new TFile( "/Users/taka/Documents/SPAN/Muonium/20181230Simulator/MuSeed.root" );
   
   string filename2 = std::string(argv[1]);
-  filename2 = "/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/Target_" + filename2;
+  filename2 = "/Users/zhangce/WorkArea/1S2SMuSim/SimDiffusionLaser/Root/Target_" + filename2;
   
-  TFile* itf = new TFile(filename2.c_str());
+  //TFile* itf = new TFile(filename2.c_str());
 
-  //TFile* itf = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/masuda_san_1224_tree_Type3_D87000_T322_Nrepeat3231566_Xfree0_Thick7.12_NewGeo0_.root");
+  TFile* itf = new TFile("/Users/zhangce/WorkArea/1S2SMuSim/SimDiffusionLaser/Root/masuda_san_1224_tree_Type3_D87000_T322_Nrepeat3231566_Xfree0_Thick7.12_NewGeo0_.root");
   //TFile* itf = new TFile( "/Users/taka/Documents/SPAN/Muonium/20190106SlowMuEnhancement/SlowMuSeed1E7.root" ); // slower than 4e6 mm/s
   TTree* seedTr = 0;
   itf->GetObject( "tree", seedTr );

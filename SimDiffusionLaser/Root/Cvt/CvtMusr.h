@@ -18,21 +18,11 @@
 //const string filename = "OtanisanNewGeo0827_tree_Type1_D87000_T322_Nrepeat2000000_Xfree1_Thick7.12_NewGeo0_.root";
 //const string filename = "OtanisanNewGeo0827_tree_Type1_D87000_T322_Nrepeat840000_Xfree1_Thick2.00_NewGeo1_.root";
 const string filename = //"Otanisan0823_tree_Type1_D87000_T322_Nrepeat1000000_Xfree1_Thick7.12_NewGeo0_.root";
-//"FromDline_0225_tree_B0.119_Type3_D87000_T322_Nrepeat572_Xfree0_Thick7.12_NewGeo0_.root";
-//"FromDline_0225_tree_B0.119_Type3_D87000_T322_Nrepeat1866_Xfree0_Thick7.12_NewGeo0_.root";
-//"FromDline_0225_tree_B0.119_Type3_D87000_T322_Nrepeat1570_Xfree0_Thick8.80_NewGeo0_.root";
-//"FromDline_DG500_0227_tree_B0.119_Type3_D87000_T322_Nrepeat2160_Xfree0_Thick8.80_NewGeo0_.root";
-//"FromDline_78_DG500_0228_tree_B0.119_Type3_D87000_T322_Nrepeat4632_Xfree0_Thick8.80_NewGeo0_.root";
-//"FromDline_78_DG525_0228_tree_B0.119_Type3_D87000_T322_Nrepeat6655_Xfree1_Thick8.80_NewGeo0_.root";
+//"/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/Target_output_0.root";
+"./0324_tlaser_1.2.root";
 
-//"0307_78_DG500_dqd0.95_tlaser_2.5_tree_B0.119_Type3_D87000_T322_Nrepeat4545_Xfree1_Thick8.80_NewGeo0_.root";
-//"0313_78_DG500_dqd0.95_tlaser_2.5_1e7_00_tree_B0.119_Type3_D87000_T322_Nrepeat46036_Xfree1_Thick8.80_NewGeo0_.root";
-//"0313_78_DG500_dqd0.95_tlaser_2.5_tot_tree_B0.119_Type3_D87000_T322_Nrepeat505785_Xfree1_Thick8.80_NewGeo0_.root";
-//"0317_78_DG500_dqd0.95_tlaser_2.5_tot__tree_B0.119_Type3_D87000_T322_Nrepeat3270612_Xfree1_Thick8.80_NewGeo0_.root";
-//"0317_tlaser.root";
-"/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/Target_output_0.root";
-
-const string output = "/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/FromDline_musr.dat";
+const string output = 
+"/Users/zhangce/WorkArea/1S2SMuSim/SimThermalMuonTran/run/FromDline_musr.dat";
 
 double PI = 3.1415926;
 

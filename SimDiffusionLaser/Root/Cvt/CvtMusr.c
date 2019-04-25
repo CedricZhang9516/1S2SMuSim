@@ -34,7 +34,7 @@ void CvtMusr::Loop()
 // METHOD2: replace line
 //    fChain->GetEntry(jentry);       //read all branches
 //by  b_branchname->GetEntry(ientry); //read only this branch
-   
+   /*
    TH1D *hLaserX = new TH1D("hLaserX","hLaserX",200,-100,100); // mm
    TH1D *hLaserXp = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
    TH1D *hLaserY = new TH1D("hLaserY","hLaserY",100,-5,5); // mm
@@ -54,6 +54,7 @@ void CvtMusr::Loop()
    TH1D* hZ = new TH1D("hZ","hZ;mm",100,-8.80,1);
    
    TH2D* TgtXY = new TH2D("TgtXY","TgtXY;X(mm);Y(mm)'",100,-50,50,50,-15,15); // mm;
+   */
    //TCanvas *c3 = new TCanvas("c3","c3",1200,400);
    //c3->Divide(4,1);
 
@@ -86,7 +87,9 @@ void CvtMusr::Loop()
       //LaserXp = sin(theta)*cos(phi)/cos(theta);
       //LaserYp = sin(theta)*sin(phi)/cos(theta);
 
-      cout << g << "\t" << b << endl;
+      //cout << g << "\t" << b << endl;
+      LaserX = 0; LaserXp = 0; LaserY = 0; LaserYp = 0;
+
       wf << LaserX*0.1 << " "
       << LaserXp*1000 << " "
       << LaserY*0.1 << " "
@@ -95,7 +98,7 @@ void CvtMusr::Loop()
       << LaserZ << " "
       << TBeam*1e9 << " "
       << "-1 -1" << endl;
-
+/*
       hLaserX->Fill(LaserX);// = new TH1D("hLaserX","hLaserX",200,-100,100); // mm
       hLaserXp->Fill(LaserXp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
       hLaserY->Fill(LaserY);// = new TH1D("hLaserY","hLaserY",200,-25,25); // mm
@@ -110,7 +113,7 @@ void CvtMusr::Loop()
       hY->Fill(Y0);
       hZ->Fill(Z0);
       TgtXY->Fill(X0,Y0);
-
+*/
       if (Cut(ientry) < 0) continue;
    }
 

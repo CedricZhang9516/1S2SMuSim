@@ -7,3 +7,7 @@ SimThermalMuonTran/bin/bkup190408/musrSim
 SimThermalMuonTran/include/.DS_Store
 SimThermalMuonTran/src/.DS_Store
 SimDiffusionLaser/.DS_Store
+OutputRoot/Analysis/.DS_Store
+*.pdf
+*.root
+SimThermalMuonTran/run/FromDline_musr.dat

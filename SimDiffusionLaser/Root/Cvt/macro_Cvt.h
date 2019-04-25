@@ -1,4 +1,4 @@
-#include "CvtMusr.C"
+#include "CvtMusr.c"
 
 CvtMusr* t;
 

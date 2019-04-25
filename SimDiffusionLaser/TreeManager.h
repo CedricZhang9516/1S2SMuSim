@@ -92,7 +92,7 @@ fCW(cw), fPulse(pulse), fDetailSaveFlag(saveFlag), fNPoints( nPoints ), fTPitch(
 {
 
   std::string filename2 = std::string(filename);
-  filename2 = "/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/" + filename2;
+  filename2 = "/Users/zhangce/WorkArea/1S2SMuSim/SimDiffusionLaser/Root/" + filename2;
 
   fFile = new TFile( filename2.c_str(), "RECREATE" );
   fSettingTree = new TTree( "Setting", "Setting" );
