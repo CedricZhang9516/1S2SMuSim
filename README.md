@@ -64,7 +64,7 @@ If only parts of the simulaitons are used, the prerequisite for each part are:
 
 ## Quick start
 
-using the Build.sh and Run.sh one can easily build and run the entire simulation (assuming prerequisites above installed).
+Using Build.sh and Run.sh one can easily build and run the entire simulation (assuming prerequisites above installed).
 
 Run.sh provides an easy way to run the simulaiton. using
 
