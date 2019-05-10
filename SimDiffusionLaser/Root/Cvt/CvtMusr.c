@@ -9,7 +9,7 @@
 
 
 
-void CvtMusr::Loop()
+void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
 {
 //   In a ROOT session, you can do:
 //      Root > .L CvtMusr.C
@@ -34,7 +34,10 @@ void CvtMusr::Loop()
 // METHOD2: replace line
 //    fChain->GetEntry(jentry);       //read all branches
 //by  b_branchname->GetEntry(ientry); //read only this branch
-   /*
+
+   const string output = 
+   output_;//"./FromDline_musr_0507_10.dat";
+   
    TH1D *hLaserX = new TH1D("hLaserX","hLaserX",200,-100,100); // mm
    TH1D *hLaserXp = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
    TH1D *hLaserY = new TH1D("hLaserY","hLaserY",100,-5,5); // mm
@@ -45,7 +48,7 @@ void CvtMusr::Loop()
    TH2D *hLaserXXp = new TH2D("hLaserXXp","hLaserXXp",100,-100,100,100,-6,6); // mm
    TH2D *hLaserYYp = new TH2D("hLaserYYp","hLaserYYp",100,-5,5,100,-8,8); // mm
    TCanvas *c = new TCanvas("c","c",1200,800);
-   TCanvas *c2 = new TCanvas("c2","c2",1000,800);
+   //TCanvas *c2 = new TCanvas("c2","c2",1000,800);
    c->Divide(3,2);
 
 
@@ -54,7 +57,7 @@ void CvtMusr::Loop()
    TH1D* hZ = new TH1D("hZ","hZ;mm",100,-8.80,1);
    
    TH2D* TgtXY = new TH2D("TgtXY","TgtXY;X(mm);Y(mm)'",100,-50,50,50,-15,15); // mm;
-   */
+   
    //TCanvas *c3 = new TCanvas("c3","c3",1200,400);
    //c3->Divide(4,1);
 
@@ -88,27 +91,36 @@ void CvtMusr::Loop()
       //LaserYp = sin(theta)*sin(phi)/cos(theta);
 
       //cout << g << "\t" << b << endl;
-      LaserX = 0; LaserXp = 0; LaserY = 0; LaserYp = 0;
+      //LaserX = 10; LaserXp = 0; LaserY = 0; LaserYp = 0; LaserZ = 3;
+      //LaserX = tmpa; 
+      LaserXp = 0; 
+      //LaserY = tmpb; 
+      LaserYp = 0; 
+      //LaserZ = tmpc;
+      //if(abs(LaserY)<1 && abs(LaserX)<5){
+         cout<<LaserX<<" "<<LaserY<<" "<<LaserZ<<endl;
 
-      wf << LaserX*0.1 << " "
-      << LaserXp*1000 << " "
-      << LaserY*0.1 << " "
-      << LaserYp*1000 << " "
-      << mmu/1000*g*b << " "
-      << LaserZ << " "
-      << TBeam*1e9 << " "
-      << "-1 -1" << endl;
+         wf << LaserX*0.1 << " "
+         << LaserXp*1000 << " "
+         << LaserY*0.1 << " "
+         << LaserYp*1000 << " "
+         << mmu/1000*g*b << " "
+         << LaserZ << " "
+         << TBeam*1e9 << " "
+         << "-1 -1" << endl;
+
+         hLaserX->Fill(LaserX);// = new TH1D("hLaserX","hLaserX",200,-100,100); // mm
+         hLaserXp->Fill(LaserXp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
+         hLaserY->Fill(LaserY);// = new TH1D("hLaserY","hLaserY",200,-25,25); // mm
+         hLaserYp->Fill(LaserYp);// = new TH1D("hLaserYp","hLaserYp",200,-8,8); // mm
+         hLaserZ->Fill(LaserZ);// = new TH1D("hLaserZ","hLaserZ",200,0,7); // mm
+         hLaserE->Fill(LaserE);// = new TH1D("hLaserE","hLaserE",200,0,0.3e-6); // mm
+         TgtXY->Fill(LaserX,LaserY);
+
+         hLaserXXp->Fill(LaserX,LaserXp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
+         hLaserYYp->Fill(LaserY,LaserYp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
+      //}
 /*
-      hLaserX->Fill(LaserX);// = new TH1D("hLaserX","hLaserX",200,-100,100); // mm
-      hLaserXp->Fill(LaserXp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
-      hLaserY->Fill(LaserY);// = new TH1D("hLaserY","hLaserY",200,-25,25); // mm
-      hLaserYp->Fill(LaserYp);// = new TH1D("hLaserYp","hLaserYp",200,-8,8); // mm
-      hLaserZ->Fill(LaserZ);// = new TH1D("hLaserZ","hLaserZ",200,0,7); // mm
-      hLaserE->Fill(LaserE);// = new TH1D("hLaserE","hLaserE",200,0,0.3e-6); // mm
-
-      hLaserXXp->Fill(LaserX,LaserXp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
-      hLaserYYp->Fill(LaserY,LaserYp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
-
       hX->Fill(X0);
       hY->Fill(Y0);
       hZ->Fill(Z0);
@@ -119,7 +131,7 @@ void CvtMusr::Loop()
 
 
    wf.close();
-/*
+
       c->cd(1);
    SetstyleHist1(hLaserX);
    hLaserX->SetTitle("Mu X at the laser time 1.2 us; x(mm); N");
@@ -147,7 +159,10 @@ void CvtMusr::Loop()
    c->cd(6);
    hLaserE->SetTitle("Mu kinetic E at the laser time 1.2 us; Ek(MeV); N");
    SetstyleHist1(hLaserE);
-   hLaserE->Draw();
+   //hLaserE->Draw();
+   TgtXY->Draw("colz");
+
+/*
    c2->Divide(2,1);
    c2->cd(1);
    hLaserXXp->Draw("colz");

@@ -32,9 +32,6 @@
 #/gps/ene/max 2.52858533 MeV
 
 
-
-
-
 /control/verbose 0
 /process/verbose 0
 /tracking/verbose 0

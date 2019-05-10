@@ -21,8 +21,9 @@ const string filename = //"Otanisan0823_tree_Type1_D87000_T322_Nrepeat1000000_Xf
 //"/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/Target_output_0.root";
 "./0324_tlaser_1.2.root";
 
-const string output = 
-"/Users/zhangce/WorkArea/1S2SMuSim/SimThermalMuonTran/run/FromDline_musr.dat";
+//const string output = 
+//"./FromDline_musr_0507_10.dat";
+//"/Users/zhangce/WorkArea/1S2SMuSim/SimThermalMuonTran/run/FromDline_musr_0507_1.dat";
 
 double PI = 3.1415926;
 
@@ -141,7 +142,7 @@ public :
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
-   virtual void     Loop();
+   virtual void     Loop( double tmpa, double tmpb, double tmpc, string output_);
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
 };

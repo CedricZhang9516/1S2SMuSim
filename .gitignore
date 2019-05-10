@@ -11,3 +11,16 @@ OutputRoot/Analysis/.DS_Store
 *.pdf
 *.root
 SimThermalMuonTran/run/FromDline_musr.dat
+OutputRoot/Analysis/Diffusion/.DS_Store
+SimThermalMuonTran/run/.DS_Store
+*.png
+*.txt
+*.dat
+*.mac
+OutputRoot/0508_totpoint_x/.DS_Store
+OutputRoot/.DS_Store
+SimDiffusionLaser/Root/.DS_Store
+SimThermalMuonTran/run/Gen_mac.sh
+SimThermalMuonTran/run/0508_mac/runtest.sh
+SimThermalMuonTran/run/0508_mac/run.sh
+.DS_Store
