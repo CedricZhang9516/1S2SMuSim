@@ -21,6 +21,7 @@ const double binw_p =  0.2;
 const int    nbin_p = (int)((max_pt-min_pt)/binw_pt);
 
 
+
 void macro_Dline_(){
 
   c1 = new TCanvas("c1","c1",10,10,1200,1200);
@@ -144,8 +145,33 @@ void macro_Dline_2(string fname_, int i ){
 
 }
 
+/*
+void macro_Dline(){
 
-void macro_Dline(string fname_=""){
+  TGraph * gN1 = new TGraph();
+  TGraph * gN2 = new TGraph();
+  TGraph * gN3 = new TGraph();
+
+  macro_Dline3("../../0522_point/musr_0_new0522_1.3_large",2,gN1);
+  macro_Dline3("../../0522_point/musr_0_new0522_1.3_large2",3,gN2);
+  macro_Dline3("../../0521_point/musr_0_new0521_1.3_large",4,gN3);
+
+  c1 = new TCanvas("c1","c1",800,600);
+  
+  //c1->Divide(3,1);
+  //c1->cd(1);gN1->SetMarkerColor(2);gN1->Draw("apl*");
+  //c1->cd(2);gN2->SetMarkerColor(3);gN2->Draw("apl*");
+  //c1->cd(3);gN3->SetMarkerColor(4);gN3->Draw("apl*");
+  
+  //gN1->SetMarkerColor(2);gN1->Draw("apl*");
+  //gN2->SetMarkerColor(3);gN2->Draw("Pl*same");
+  //gN3->SetMarkerColor(4);gN3->Draw("Pl*same");
+  
+}
+*/
+
+//void macro_Dline3(string fname_="", int ci = 1, TGraph* gN = 0){
+void macro_Dline(string fname_="", int ci = 1, TGraph* gN = 0){
 
   string fname = //fname_; //"mlf_d2_10101401.root";
   //"mlf_d2_10101401_ns.root";
@@ -171,14 +197,18 @@ void macro_Dline(string fname_=""){
   //"./musr_fuck_20";
   //"./musr_fuck_20_eq2_0";
   //"../../0507_point_1";
-  "../../0510_point/musr_0510_1";
+  //"../../0510_point/musr_0510_5";
+  
+  "../../0521_point/musr_simple_0521_73";
+  //"../../0521_point/musr_0_new0521_1.3_large";
+  //"../../0522_point/musr_0_new0522_1.3_large";
 
-//"musr_0_78_DG365_7.1e8";
-//"mlf_d2_190305_dqdscale_1.1_ns";
-//"mlf_d2_190305_dqdscale_1.2_ns";
-//"mlf_d2_190305_dqdscale_0.5_ns";
-    //"mlf_d2_mum_setup.root";
-    //"mlf_d2_murfq_setup.root";
+  //"musr_0_78_DG365_7.1e8";
+  //"mlf_d2_190305_dqdscale_1.1_ns";
+  //"mlf_d2_190305_dqdscale_1.2_ns";
+  //"mlf_d2_190305_dqdscale_0.5_ns";
+  //"mlf_d2_mum_setup.root";
+  //"mlf_d2_murfq_setup.root";
 
   string fname2 = fname;//"musr_dq2_2.0_1.056_1";
   ofstream output_filex(Form("%s_x.txt",fname2.c_str()));
@@ -256,11 +286,15 @@ void macro_Dline(string fname_=""){
 
 
 
-  for(int j = 0; j< Ndet; j++){
-        fHx   = new TH1F("fHx",   "x",   3000, -1000, 900);
-        fHy   = new TH1F("fHy",   "y",   3000, -1000, 1000);
-        fHz   = new TH1F("fHz",   "z",   4000, -1000, 2000);
-  for (Long64_t jentry=0; jentry<nentries;jentry++) {
+  for(int j = 0; j< Ndet; j++)
+  {
+
+    fHx   = new TH1F("fHx",   "x",   3000, -1000, 900);
+    fHy   = new TH1F("fHy",   "y",   3000, -1000, 1000);
+    fHz   = new TH1F("fHz",   "z",   4000, -1000, 2000);
+
+    for (Long64_t jentry=0; jentry<nentries;jentry++) 
+    {
   
       //Long64_t ientry = LoadTree(jentry);
       //if (ientry < 0) break; 
@@ -277,96 +311,96 @@ void macro_Dline(string fname_=""){
       
       //for(int j = 0; j< 1; j++){
 
-        for( int i = 0 ; i < N ; i++ ){     
+      for( int i = 0 ; i < N ; i++ )
+      {     
 
-          if( save_detID[i]==DetectorSet[j] && save_particleID[i]==PID ){//DET_ID & PID
-          //if( save_detID[i]==DetectorSet[0] && save_particleID[i]==PID ){//DET_ID & PID
+        if( save_detID[i]==DetectorSet[j] && save_particleID[i]==PID )
+        {//DET_ID & PID
+        //if( save_detID[i]==DetectorSet[0] && save_particleID[i]==PID ){//DET_ID & PID
 
 
-            //if(prev_x==save_x[i]&&prev_z==save_z[i])continue;//Identify a new event
+          if(prev_x==save_x[i]&&prev_z==save_z[i])continue;//Identify a new event
 
-            T  = save_ke[i];//MeV
+          T  = save_ke[i];//MeV
 
-            px = save_px[i];
-            py = save_py[i];
-            pz = save_pz[i];
-            x  = save_x[i];
-            y  = save_y[i];
-            z  = save_z[i];
+          px = save_px[i];
+          py = save_py[i];
+          pz = save_pz[i];
+          x  = save_x[i];
+          y  = save_y[i];
+          z  = save_z[i];
 
-            fHx->Fill(x);//cout<<x<<" fill"<<endl;
-            fHy->Fill(y);
-            fHz->Fill(z);
-             
-             
-             //Record previous value        
-            prev_x = save_x[i];
-            prev_z = save_z[i];
+          fHx->Fill(x);//cout<<x<<" fill"<<endl;
+          fHy->Fill(y);
+          fHz->Fill(z);
+           
+           
+           //Record previous value        
+          prev_x = save_x[i];
+          prev_z = save_z[i];
 
-            if(DetectorSet[j]==916)Hxy->Fill(z,pz/(-1*px));
-            //if(DetectorSet[j]==917)Hxy->Fill(y,py/(-1*px));
-            //if(DetectorSet[j]==1020)Hxy->Fill(y,py/(-1*pz));
-
-            //break;
-          
-          }//if : DET_ID && PID
-        }
-
+          if(DetectorSet[j]==916)Hxy->Fill(z,pz/(-1*px));
+          //if(DetectorSet[j]==917)Hxy->Fill(y,py/(-1*px));
+          //if(DetectorSet[j]==1020)Hxy->Fill(y,py/(-1*pz));
+          //break;
         
-
-      }//for : i
+        }//if : DET_ID && PID
+      }
+    }//for : i
       //if(DetectorSet[j]<910 || DetectorSet[j]>914)gx->SetPoint(j,DetectorSet[j],fHx->GetStdDev());
-      double detz = fHz->GetMean() +1004;
-      double detx = fHx->GetMean() -780;
-      double tmp = sqrt(detx*detx)+sqrt(detz*detz);
-      
-      if(DetectorSet[j]==801 || DetectorSet[j]==802|| DetectorSet[j]==800){
-      //  double tmp = sqrt(detz*detz+detx*detx);
-      //  gx->SetPoint(j,tmp,fHx->GetStdDev());
-      //}
-      //if(DetectorSet[j]>914){
-        gx->SetPoint(j,tmp,sqrt(2)*fHx->GetMean());
-        output_filex<<tmp<<" "<<sqrt(2)*fHx->GetMean()<<endl;
-      }
-      else if(DetectorSet[j]<910 || DetectorSet[j]>917){
-      //  double tmp = sqrt(detz*detz+detx*detx);
-      //  gx->SetPoint(j,tmp,fHx->GetMean());
-      //}
-      //if(DetectorSet[j]>914){
-        gx->SetPoint(j,tmp,fHx->GetMean());
-        output_filex<<tmp<<" "<<fHx->GetMean()<<endl;
-      }
-      //else gx->SetPoint(j,DetectorSet[j],fHz->GetMean());
-      else {gx->SetPoint(j,tmp,fHz->GetMean());
-        output_filex<<tmp<<" "<<fHz->GetMean()<<endl;
-      }
-        //gy->SetPoint(j,DetectorSet[j],fHy->GetMean());
-      //if(DetectorSet[j]<910)gy->SetPoint(j,fHz->GetMean(),fHy->GetMean());
-      //else 
-      gy->SetPoint(j,tmp,fHy->GetMean());output_filey<<tmp<<" "<<fHy->GetMean()<<endl;
-
-      if(DetectorSet[j]==904){cout<<tmp<<endl;linex[0] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==909){cout<<tmp<<endl;linex[1] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==911){cout<<tmp<<endl;linex[2] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==914){cout<<tmp<<endl;linex[3] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==918){cout<<tmp<<endl;linex[4] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==1020){cout<<tmp<<endl;linex[5] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==919){cout<<tmp<<endl;linex[6] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-
-      if(DetectorSet[j]==904){cout<<tmp<<endl;liney[0] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==909){cout<<tmp<<endl;liney[1] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==911){cout<<tmp<<endl;liney[2] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==914){cout<<tmp<<endl;liney[3] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==918){cout<<tmp<<endl;liney[4] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==1020){cout<<tmp<<endl;liney[5] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-      if(DetectorSet[j]==919){cout<<tmp<<endl;liney[6] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
-
-
-      
-    }//jentry
-
+    double detz = fHz->GetMean() +1004;
+    double detx = fHx->GetMean() -780;
+    double tmp = sqrt(detx*detx)+sqrt(detz*detz);
     
-    
+    if(DetectorSet[j]==801 || DetectorSet[j]==802|| DetectorSet[j]==800)
+    {
+    //  double tmp = sqrt(detz*detz+detx*detx);
+    //  gx->SetPoint(j,tmp,fHx->GetStdDev());
+    //}
+    //if(DetectorSet[j]>914){
+      gx->SetPoint(j,tmp,sqrt(2)*fHx->GetMean());
+      output_filex<<tmp<<" "<<sqrt(2)*fHx->GetMean()<<endl;
+    }
+    else if(DetectorSet[j]<910 || DetectorSet[j]>917)
+    {
+    //  double tmp = sqrt(detz*detz+detx*detx);
+    //  gx->SetPoint(j,tmp,fHx->GetMean());
+    //}
+    //if(DetectorSet[j]>914){
+      gx->SetPoint(j,tmp,fHx->GetMean());
+      output_filex<<tmp<<" "<<fHx->GetMean()<<endl;
+    }
+    //else gx->SetPoint(j,DetectorSet[j],fHz->GetMean());
+    else 
+    {
+      gx->SetPoint(j,tmp,fHz->GetMean());
+      output_filex<<tmp<<" "<<fHz->GetMean()<<endl;
+    }
+      //gy->SetPoint(j,DetectorSet[j],fHy->GetMean());
+    //if(DetectorSet[j]<910)gy->SetPoint(j,fHz->GetMean(),fHy->GetMean());
+    //else 
+    gy->SetPoint(j,tmp,fHy->GetMean());output_filey<<tmp<<" "<<fHy->GetMean()<<endl;
+
+    if(DetectorSet[j]==904){cout<<tmp<<endl;linex[0] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==909){cout<<tmp<<endl;linex[1] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==911){cout<<tmp<<endl;linex[2] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==914){cout<<tmp<<endl;linex[3] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==918){cout<<tmp<<endl;linex[4] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==1020){cout<<tmp<<endl;linex[5] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==919){cout<<tmp<<endl;linex[6] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+
+    if(DetectorSet[j]==904){cout<<tmp<<endl;liney[0] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==909){cout<<tmp<<endl;liney[1] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==911){cout<<tmp<<endl;liney[2] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==914){cout<<tmp<<endl;liney[3] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==918){cout<<tmp<<endl;liney[4] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==1020){cout<<tmp<<endl;liney[5] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+    if(DetectorSet[j]==919){cout<<tmp<<endl;liney[6] = new TLine(tmp,0,tmp,gx->GetYaxis()->GetXmax());}
+
+    cout<<"detector "<<DetectorSet[j]<<" "<<fHy->GetEntries()<<endl;
+    //gN->SetPoint(j,j,fHy->GetEntries());
+      
+  }//jentry
 
     
     c1->cd(1);
@@ -389,10 +423,15 @@ void macro_Dline(string fname_=""){
     //line8->Draw();
     //line9->Draw();
     //c1->SaveAs(Form("%s_SigmaFlow.png",fname2.c_str()));
-      c1->SaveAs(Form("%s_MeanFlow.png",fname2.c_str()));
+    
+    //c1->SaveAs(Form("%s_MeanFlow.png",fname2.c_str()));
 
     TCanvas* c2 = new TCanvas("c2","c2",10,10,800,800);
     Hxy->Draw("colz");
+    //gN->SetMarkerColor(ci);
+    //gN->Draw("APL*");
+
+
 /*
 
   for ( int i =0;i<Ndet;i++){

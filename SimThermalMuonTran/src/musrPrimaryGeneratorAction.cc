@@ -77,7 +77,7 @@ musrPrimaryGeneratorAction::musrPrimaryGeneratorAction(
 
   // default particle kinematic
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
-  G4ParticleDefinition* muonParticle= particleTable->FindParticle("mu+");
+  G4ParticleDefinition* muonParticle = particleTable->FindParticle("mu+");
   // cks delete muonMinusParticle= particleTable->FindParticle("mu-");
   // cks Implement also alpha and proton particles for the simulation of Juan Pablo Urrego
   alphaParticle= particleTable->FindParticle("alpha");

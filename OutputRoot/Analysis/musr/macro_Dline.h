@@ -12,6 +12,7 @@
 
   void macro_Dline_(string fname_);
   void macro_Dline_2(string fname_, int i );
+  void macro_Dline3(string fname_="", int ci = 1, TGraph* gN = 0);
   TGraph * gx;// = new TGraph(Form("%s_x.txt",fname_.c_str()));
   TGraph * gy;// = new TGraph(Form("%s_y.txt",fname_.c_str()));
   TLegend * tl;

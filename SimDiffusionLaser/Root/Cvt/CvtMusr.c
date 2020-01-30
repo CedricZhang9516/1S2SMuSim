@@ -38,6 +38,7 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
    const string output = 
    output_;//"./FromDline_musr_0507_10.dat";
    
+   /*
    TH1D *hLaserX = new TH1D("hLaserX","hLaserX",200,-100,100); // mm
    TH1D *hLaserXp = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
    TH1D *hLaserY = new TH1D("hLaserY","hLaserY",100,-5,5); // mm
@@ -57,7 +58,7 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
    TH1D* hZ = new TH1D("hZ","hZ;mm",100,-8.80,1);
    
    TH2D* TgtXY = new TH2D("TgtXY","TgtXY;X(mm);Y(mm)'",100,-50,50,50,-15,15); // mm;
-   
+   */
    //TCanvas *c3 = new TCanvas("c3","c3",1200,400);
    //c3->Divide(4,1);
 
@@ -68,6 +69,7 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
    const double mmu = 105.658;
    Long64_t nbytes = 0, nb = 0;
 
+   nentries = 650;
    
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
       Long64_t ientry = LoadTree(jentry);
@@ -92,13 +94,13 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
 
       //cout << g << "\t" << b << endl;
       //LaserX = 10; LaserXp = 0; LaserY = 0; LaserYp = 0; LaserZ = 3;
-      //LaserX = tmpa; 
+      LaserX = tmpa; 
       LaserXp = 0; 
-      //LaserY = tmpb; 
+      LaserY = tmpb; 
       LaserYp = 0; 
-      //LaserZ = tmpc;
+      LaserZ = tmpc;
       //if(abs(LaserY)<1 && abs(LaserX)<5){
-         cout<<LaserX<<" "<<LaserY<<" "<<LaserZ<<endl;
+         //cout<<LaserX<<" "<<LaserY<<" "<<LaserZ<<endl;
 
          wf << LaserX*0.1 << " "
          << LaserXp*1000 << " "
@@ -108,7 +110,7 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
          << LaserZ << " "
          << TBeam*1e9 << " "
          << "-1 -1" << endl;
-
+/*
          hLaserX->Fill(LaserX);// = new TH1D("hLaserX","hLaserX",200,-100,100); // mm
          hLaserXp->Fill(LaserXp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
          hLaserY->Fill(LaserY);// = new TH1D("hLaserY","hLaserY",200,-25,25); // mm
@@ -119,6 +121,7 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
 
          hLaserXXp->Fill(LaserX,LaserXp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
          hLaserYYp->Fill(LaserY,LaserYp);// = new TH1D("hLaserXp","hLaserXp",200,-6,6); // mm
+*/
       //}
 /*
       hX->Fill(X0);
@@ -131,7 +134,7 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
 
 
    wf.close();
-
+/*
       c->cd(1);
    SetstyleHist1(hLaserX);
    hLaserX->SetTitle("Mu X at the laser time 1.2 us; x(mm); N");
@@ -161,7 +164,7 @@ void CvtMusr::Loop( double tmpa, double tmpb, double tmpc, string output_)
    SetstyleHist1(hLaserE);
    //hLaserE->Draw();
    TgtXY->Draw("colz");
-
+*/
 /*
    c2->Divide(2,1);
    c2->cd(1);

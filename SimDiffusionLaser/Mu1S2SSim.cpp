@@ -145,12 +145,13 @@ int main(int argc, char **argv)
 {
   
 
-/*
+
   double x_dec, y_dec, z_dec, t_dec;
   int Nentries;
   
   //TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_0417_Kapton_DG350_tot.root");
   //TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/masuda_san_1224_tree_Type3_D87000_T322_Nrepeat3231566_Xfree0_Thick7.12_NewGeo0_.root");
+  TFile *Fdlinefile = new TFile("/home/had/zhangce/1S2SMuSim/SimDiffusionLaser/Root/SimBeamStop_S2area_191118_4.root");
   TTree * Tdlinefile = (TTree*) Fdlinefile->Get("position");
   Tdlinefile->SetBranchAddress("x", &x_dec);
   Tdlinefile->SetBranchAddress("y", &y_dec);
@@ -181,7 +182,7 @@ int main(int argc, char **argv)
 
   tManager0.Write();
   cout<<"filename Target_"<<argv[1]<<" closed."<<endl;
-*/
+
 
   
   //  ./DecayEffect filename detune[Hz] (./DecayEffect +1kHz.root 1000)

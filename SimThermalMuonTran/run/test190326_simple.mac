@@ -289,6 +289,7 @@
 /musr/command globalfield SOA_field  780.0 0 -708.0  fromfile 3DE SOA_0000_20000_0000_0000.txt log_MCHvac 0.947
 /musr/command globalfield SOA_field  780.0 0 -708.0  fromfile 3DE SOA_0000_0000_20000_0000.txt log_MCHvac 0.902
 /musr/command globalfield SOA_field  780.0 0 -708.0  fromfile 3DE SOA_0000_0000_0000_20000.txt log_MCHvac 0.8
+
 /musr/command globalfield Q1_field   780 0  -144   fromfile 3DE Q1_3D_map.map   log_Q1vac     0
 
 #/musr/command globalfield Q2_field   780 0   16      fromfile 3DE Q1_3D_map.map   log_Q2vac    0.56

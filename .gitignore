@@ -24,3 +24,5 @@ SimThermalMuonTran/run/Gen_mac.sh
 SimThermalMuonTran/run/0508_mac/runtest.sh
 SimThermalMuonTran/run/0508_mac/run.sh
 .DS_Store
+*.key
+*.wrl
